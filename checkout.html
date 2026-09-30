@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smart-Devices</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand">smart-Devices</div>
+    </header>
+
+    <main class="container">
+        <div id="checkout-panel" class="checkout-grid">
+            <form id="order-form" novalidate>
+                <h2>Shipping Information</h2>
+                
+                <div class="field-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName">
+                    <span class="err" id="err-fullName"></span>
+                </div>
+
+                <div class="field-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email">
+                    <span class="err" id="err-email"></span>
+                </div>
+
+                <div class="field-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                    <span class="err" id="err-phone"></span>
+                </div>
+
+                <div class="field-group">
+                    <label for="address">Delivery Address</label>
+
+                    <input type="text" id="address" name="address">
+                    <span class="err" id="err-address"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width">Place Order</button>
+            </form>
+
+            <div class="checkout-summary">
+                <h3>Order Overview</h3>
+                <div id="summary-items-list"></div>
+                <div class="summary-row total">
+                    <span>Final Amount</span>
+                    <span id="final-amount">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirmation-screen" class="confirm-box hidden">
+            <h2>Order Confirmed!</h2>
+            <p id="confirm-msg"></p>
+            <p class="order-ref" id="order-ref-id"></p>
+            <a href="index.html" id="back-home-btn" class="btn">Continue Shopping</a>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script src="js/checkout-view.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "products": [
+    {
+      "id": 101,
+      "name": "Aura Smart Ambient Light",
+      "price": 45.99,
+      "category": "Lighting",
+      "specs": "RGB Color Spectrum, App Controlled"
+    },
+    {
+      "id": 102,
+      "name": "Pulse Wireless Charging Pad",
+      "price": 24.50,
+      "category": "Accessories",
+      "specs": "15W Fast Charge, Qi Compatible"
+    },
+    {
+      "id": 103,
+      "name": "SonicNoise ANC Headphones",
+      "price": 129.99,
+      "category": "Audio",
+      "specs": "Active Noise Cancelling, 40h Battery"
+    },
+    {
+      "id": 104,
+      "name": "Vision Pro Security Camera",
+      "price": 79.00,
+      "category": "Security",
+      "specs": "1080p HD, Night Vision, Motion Detection"
+    },
+    {
+      "id": 105,
+      "name": "ErgoTrack Bluetooth Mouse",
+      "price": 39.99,
+      "category": "Accessories",
+      "specs": "Multi-Device Pairing, Silent Clicks"
+    },
+    {
+      "id": 106,
+      "name": "HyperMini Portable Speaker",
+      "price": 54.99,
+      "category": "Audio",
+      "specs": "IPX7 Waterproof, Deep Bass"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smart-Devices</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand">smart-Devices</div>
+        <button id="mobile-menu-btn" class="nav-toggle">&#9776;</button>
+        <nav id="nav-links">
+            <a href="index.html" class="active">Store</a>
+            <a href="cart.html">Cart (<span class="basket-badge">0</span>)</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="filter-wrapper" id="category-bar"></section>
+        <section class="grid-layout" id="products-container"></section>
+    </main>
+
+    <div id="toast-alert" class="toast"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+        let currentFilter = 'All';
+
+        function renderCategories(products) {
+            const bar = document.getElementById('category-bar');
+            if (!bar) return;
+            const categories = ['All', ...new Set(products.map(p => p.category))];
+            bar.innerHTML = categories.map(cat => `
+                <button class="tab-btn ${cat === currentFilter ? 'active' : ''}" data-cat="${cat}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function renderGrid(products) {
+            const grid = document.getElementById('products-container');
+            if (!grid) return;
+
+            const items = currentFilter === 'All' 
+                ? products 
+                : products.filter(p => p.category === currentFilter);
+
+            grid.innerHTML = items.map(p => `
+                <div class="product-card">
+                    <div class="image-box">
+                        <img src="${p.image}" alt="${p.name}">
+                    </div>
+                    <div class="card-content">
+                        <span class="tag">${p.category}</span>
+                        <h3>${p.name}</h3>
+                        <p class="specs">${p.specs}</p>
+                        <div class="card-footer">
+                            <span class="price">${currency(p.price)}</span>
+                            <button class="btn add-btn" data-id="${p.id}">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const grid = document.getElementById('products-container');
+            if (!grid) return;
+
+            const products = await fetchProducts();
+            renderCategories(products);
+            renderGrid(products);
+
+            document.getElementById('category-bar').addEventListener('click', (e) => {
+                if (e.target.classList.contains('tab-btn')) {
+                    currentFilter = e.target.dataset.cat;
+                    renderCategories(products);
+                    renderGrid(products);
+                }
+            });
+
+            grid.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-btn')) {
+                    const id = e.target.dataset.id;
+                    addItem(id, 1);
+                    notify('Item added to cart!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
